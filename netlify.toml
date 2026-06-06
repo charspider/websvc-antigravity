@@ -1,0 +1,12 @@
+# Netlify Configuration File
+# Configuración para el despliegue del sitio estático y funciones serverless
+
+[build]
+  # Publica la raíz del proyecto para alojar los archivos estáticos
+  publish = "."
+
+[functions]
+  # Directorio donde se alojan las funciones serverless de Node.js
+  directory = "netlify/functions"
+  # Utilizar esbuild para compilar dependencias rápido y de forma moderna
+  node_bundler = "esbuild"
