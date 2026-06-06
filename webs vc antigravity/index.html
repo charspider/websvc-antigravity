@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Webs VC — Páginas Web Profesionales para Pequeños Negocios</title>
+  <meta name="description" content="Creamos páginas web modernas, rápidas y efectivas para pequeños negocios y locales comerciales. Diseño profesional desde 199€. Entrega en 7 días.">
+  <meta name="keywords" content="páginas web, diseño web, pequeños negocios, web profesional, tienda online, SEO, responsive, España">
+  <meta name="author" content="Webs VC">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://websvc.es/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Webs VC — Páginas Web Profesionales para Pequeños Negocios">
+  <meta property="og:description" content="Diseño web profesional desde 199€. Entrega en 7 días. Sin complicaciones.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://websvc.es/">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Webs VC",
+    "description": "Empresa de servicios digitales especializada en crear páginas web modernas y útiles para pequeños negocios.",
+    "url": "https://websvc.es",
+    "email": "carlosvaroavello91@gmail.com",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "ES"
+    },
+    "sameAs": [],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "47"
+    }
+  }
+  </script>
+
+  <!-- Google Fonts — Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- EmailJS SDK (replace with your credentials) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar" aria-label="Navegación principal">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__logo" data-nav-link>Webs<span>VC</span></a>
+
+      <!-- Desktop menu -->
+      <div class="navbar__menu">
+        <div class="navbar__links">
+          <a href="#servicios" class="navbar__link" data-nav-link>Servicios</a>
+          <a href="#por-que-elegirnos" class="navbar__link" data-nav-link>Por qué elegirnos</a>
+          <a href="#portafolio" class="navbar__link" data-nav-link>Portafolio</a>
+          <a href="#precios" class="navbar__link" data-nav-link>Precios</a>
+          <a href="#testimonios" class="navbar__link" data-nav-link>Testimonios</a>
+          <button class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+            <!-- Sun icon (shown in dark mode) -->
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <a href="#contacto" class="btn btn-primary btn-sm navbar__cta" data-nav-link>Contactar</a>
+        </div>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="navbar__hamburger" id="navbar-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile overlay -->
+    <div class="navbar__mobile-overlay" id="navbar-mobile-overlay">
+      <a href="#servicios" class="navbar__link" data-nav-link>Servicios</a>
+      <a href="#por-que-elegirnos" class="navbar__link" data-nav-link>Por qué elegirnos</a>
+      <a href="#portafolio" class="navbar__link" data-nav-link>Portafolio</a>
+      <a href="#precios" class="navbar__link" data-nav-link>Precios</a>
+      <a href="#testimonios" class="navbar__link" data-nav-link>Testimonios</a>
+      <a href="#contacto" class="btn btn-primary navbar__cta" data-nav-link>Contactar</a>
+      <button class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SEC-01 — HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__content">
+      <img src="assets/images/logo-websvc.png" alt="Webs VC Logo" class="hero__logo fade-in-element" width="280">
+
+      <p class="hero__overline fade-in-element delay-1">
+        <!-- Globe icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        Diseño web profesional para negocios locales
+      </p>
+
+      <h1 class="hero__title fade-in-element delay-2">
+        Tu negocio merece<br>una <span class="text-gradient">web profesional</span>
+      </h1>
+
+      <p class="hero__subtitle fade-in-element delay-3">
+        Creamos páginas web modernas y efectivas para pequeños negocios.
+        Sin complicaciones, a precio justo. Tu web lista en 7 días.
+      </p>
+
+      <div class="hero__actions fade-in-element delay-4">
+        <a href="#contacto" class="btn btn-primary btn-lg" data-nav-link>
+          Solicitar mi web gratis
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#portafolio" class="btn btn-white" data-nav-link>Ver ejemplos</a>
+      </div>
+
+      <div class="hero__badges fade-in-element delay-5">
+        <span class="badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          + 50 webs creadas
+        </span>
+        <span class="badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Entrega en 7 días
+        </span>
+        <span class="badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Precio desde 199€
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-02 — SERVICIOS
+       ============================================================ -->
+  <section class="services section-padding" id="servicios">
+    <div class="container">
+      <div class="section-header fade-in-element">
+        <span class="section-header__overline">Lo que hacemos</span>
+        <h2 class="section-header__title">Todo lo que tu negocio necesita en internet</h2>
+        <p class="section-header__subtitle">
+          Nos encargamos de todo para que tú te centres en lo que mejor sabes hacer: tu negocio.
+        </p>
+      </div>
+
+      <div class="services__grid">
+        <!-- Card 1: Diseño Web -->
+        <div class="service-card fade-in-element delay-1">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="service-card__title">Diseño Web Profesional</h3>
+          <p class="service-card__description">
+            Páginas web modernas con diseño premium que transmiten confianza y profesionalidad a tus clientes.
+          </p>
+          <a href="#contacto" class="service-card__link" data-nav-link>
+            Más información
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 2: Optimización Móvil -->
+        <div class="service-card fade-in-element delay-2">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3 class="service-card__title">Optimización Móvil</h3>
+          <p class="service-card__description">
+            Tu web se verá perfecta en móvil, tablet y ordenador. El 70% de tus clientes te visitarán desde el móvil.
+          </p>
+          <a href="#contacto" class="service-card__link" data-nav-link>
+            Más información
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 3: SEO Básico -->
+        <div class="service-card fade-in-element delay-3">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3 class="service-card__title">SEO Básico</h3>
+          <p class="service-card__description">
+            Optimizamos tu web para que tus clientes te encuentren en Google cuando busquen negocios como el tuyo.
+          </p>
+          <a href="#contacto" class="service-card__link" data-nav-link>
+            Más información
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 4: Dominio y Hosting -->
+        <div class="service-card fade-in-element delay-4">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="service-card__title">Dominio y Hosting</h3>
+          <p class="service-card__description">
+            Te ayudamos con el registro del dominio y la configuración del alojamiento. Todo incluido y sin complicaciones.
+          </p>
+          <a href="#contacto" class="service-card__link" data-nav-link>
+            Más información
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-03 — POR QUÉ ELEGIRNOS
+       ============================================================ -->
+  <section class="why-us section-padding" id="por-que-elegirnos">
+    <div class="container">
+      <div class="section-header fade-in-element">
+        <span class="section-header__overline">Ventajas</span>
+        <h2 class="section-header__title">¿Por qué elegirnos?</h2>
+        <p class="section-header__subtitle">
+          Porque sabemos que tu tiempo y tu dinero son valiosos. Trabajamos rápido, bien y sin sorpresas.
+        </p>
+      </div>
+
+      <div class="why-us__features">
+        <!-- Feature 1 -->
+        <div class="feature-item fade-in-element delay-1">
+          <div class="feature-item__icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="feature-item__title">Precio asequible</h3>
+          <p class="feature-item__description">Webs profesionales desde 199€. Sin letras pequeñas ni costes ocultos. Pagas lo que ves.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-item fade-in-element delay-2">
+          <div class="feature-item__icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 class="feature-item__title">Entrega rápida</h3>
+          <p class="feature-item__description">Tu web lista en solo 7 días laborables. Proceso ágil y sin complicaciones para ti.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-item fade-in-element delay-3">
+          <div class="feature-item__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="feature-item__title">Calidad premium</h3>
+          <p class="feature-item__description">Diseños modernos que compiten con los de empresas que cobran miles de euros.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-item fade-in-element delay-4">
+          <div class="feature-item__icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="feature-item__title">Soporte personal</h3>
+          <p class="feature-item__description">Te acompañamos en todo el proceso. Hablarás siempre con personas, nunca con máquinas.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-item fade-in-element delay-5">
+          <div class="feature-item__icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="feature-item__title">Resultados reales</h3>
+          <p class="feature-item__description">Webs optimizadas para que tus clientes te encuentren y te contacten fácilmente.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-item fade-in-element delay-6">
+          <div class="feature-item__icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3 class="feature-item__title">Sin permanencia</h3>
+          <p class="feature-item__description">Sin contratos de permanencia. Tu web es tuya desde el primer día.</p>
+        </div>
+      </div>
+
+      <!-- Animated counters -->
+      <div class="counters fade-in-element">
+        <div class="counter-item">
+          <div class="counter-item__number" data-counter data-target="50" data-suffix="+">0</div>
+          <div class="counter-item__label">Clientes satisfechos</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-item__number" data-counter data-target="7" data-suffix=" días">0</div>
+          <div class="counter-item__label">Tiempo medio de entrega</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-item__number" data-counter data-target="100" data-suffix="%">0</div>
+          <div class="counter-item__label">Satisfacción garantizada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-04 — PORTAFOLIO
+       ============================================================ -->
+  <section class="portfolio section-padding" id="portafolio">
+    <div class="container">
+      <div class="section-header fade-in-element">
+        <span class="section-header__overline">Nuestro trabajo</span>
+        <h2 class="section-header__title">Proyectos que hablan por sí solos</h2>
+        <p class="section-header__subtitle">
+          Cada web que creamos está diseñada para ayudar a nuestros clientes a crecer.
+        </p>
+      </div>
+
+      <div class="portfolio__grid">
+        <div class="portfolio-item fade-in-element delay-1">
+          <img src="assets/images/portfolio-restaurante.png" alt="Web para restaurante La Cocina de Ana" class="portfolio-item__image" loading="lazy">
+          <div class="portfolio-item__overlay">
+            <span class="portfolio-item__name">La Cocina de Ana</span>
+            <span class="portfolio-item__sector">Restauración</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item fade-in-element delay-2">
+          <img src="assets/images/portfolio-clinica.png" alt="Web para Clínica Dental Sonríe" class="portfolio-item__image" loading="lazy">
+          <div class="portfolio-item__overlay">
+            <span class="portfolio-item__name">Clínica Dental Sonríe</span>
+            <span class="portfolio-item__sector">Salud</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item fade-in-element delay-3">
+          <img src="assets/images/portfolio-peluqueria.png" alt="Web para peluquería Estilo Studio" class="portfolio-item__image" loading="lazy">
+          <div class="portfolio-item__overlay">
+            <span class="portfolio-item__name">Estilo Studio</span>
+            <span class="portfolio-item__sector">Belleza</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item fade-in-element delay-4">
+          <img src="assets/images/portfolio-taller.png" alt="Web para Taller Motor Pro" class="portfolio-item__image" loading="lazy">
+          <div class="portfolio-item__overlay">
+            <span class="portfolio-item__name">Taller Motor Pro</span>
+            <span class="portfolio-item__sector">Automoción</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item fade-in-element delay-5">
+          <img src="assets/images/portfolio-tienda.png" alt="Web para boutique Moda Local" class="portfolio-item__image" loading="lazy">
+          <div class="portfolio-item__overlay">
+            <span class="portfolio-item__name">Moda Local</span>
+            <span class="portfolio-item__sector">Comercio</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item fade-in-element delay-6">
+          <img src="assets/images/portfolio-yoga.png" alt="Web para estudio de yoga Espacio Zen" class="portfolio-item__image" loading="lazy">
+          <div class="portfolio-item__overlay">
+            <span class="portfolio-item__name">Espacio Zen</span>
+            <span class="portfolio-item__sector">Bienestar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-05 — PRECIOS
+       ============================================================ -->
+  <section class="pricing section-padding" id="precios">
+    <div class="container">
+      <div class="section-header fade-in-element">
+        <span class="section-header__overline">Precios transparentes</span>
+        <h2 class="section-header__title">Elige el plan perfecto para tu negocio</h2>
+        <p class="section-header__subtitle">
+          Sin sorpresas ni letras pequeñas. Precios cerrados con todo incluido.
+        </p>
+      </div>
+
+      <div class="pricing__grid pricing__grid--two">
+        <!-- Plan Básico -->
+        <div class="pricing-card fade-in-element delay-1">
+          <h3 class="pricing-card__name">Básico</h3>
+          <div class="pricing-card__price">199€<span class="pricing-card__price-suffix"> /pago único</span></div>
+          <p class="pricing-card__description">Perfecto para negocios que quieren empezar su presencia digital.</p>
+          <ul class="pricing-card__features">
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Landing page profesional
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Diseño elegante y moderno
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Responsive (móvil + desktop)
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Información de contacto integrada
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Entrega en 7 días
+            </li>
+          </ul>
+          <a href="#contacto?plan=Básico" class="btn btn-outline pricing-card__cta" data-nav-link>Elegir plan</a>
+        </div>
+
+        <!-- Plan Profesional (Destacado) -->
+        <div class="pricing-card pricing-card--popular fade-in-element delay-2">
+          <span class="pricing-card__badge">Más Popular</span>
+          <h3 class="pricing-card__name">Profesional</h3>
+          <div class="pricing-card__price">399€<span class="pricing-card__price-suffix"> /pago único</span></div>
+          <p class="pricing-card__description">La opción más completa para negocios que quieren destacar.</p>
+          <ul class="pricing-card__features">
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Secciones personalizadas
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Animaciones y efectos premium
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Estilo profesional a medida
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Dominio .es o .com incluido (1 año)
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              SEO básico incluido
+            </li>
+            <li class="pricing-card__feature">
+              <svg viewBox="0 0 24 24"><polyline class="check-icon" points="20 6 9 17 4 12"/></svg>
+              Soporte 30 días post-entrega
+            </li>
+          </ul>
+          <a href="#contacto?plan=Profesional" class="btn btn-primary pricing-card__cta" data-nav-link>Elegir plan</a>
+        </div>
+      </div>
+
+      <p class="pricing__guarantee fade-in-element">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Sin permanencia, sin sorpresas. Tu web es tuya desde el día uno.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-06 — TESTIMONIOS
+       ============================================================ -->
+  <section class="testimonials section-padding" id="testimonios">
+    <div class="container">
+      <div class="section-header fade-in-element">
+        <span class="section-header__overline">Opiniones reales</span>
+        <h2 class="section-header__title">Lo que dicen nuestros clientes</h2>
+      </div>
+
+      <!-- Global rating -->
+      <div class="testimonials__rating-global fade-in-element">
+        <div class="testimonials__rating-number">4.9</div>
+        <div class="star-rating star-rating--lg" aria-label="4.9 de 5 estrellas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonials__rating-text">Basado en 47 reseñas verificadas</p>
+      </div>
+
+      <!-- Carousel -->
+      <div class="carousel fade-in-element" aria-label="Carrusel de testimonios">
+        <div class="carousel__track" id="carousel-track">
+          <!-- Slide 1 -->
+          <div class="carousel__slide">
+            <div class="testimonial-card">
+              <img src="https://i.pravatar.cc/128?img=32" alt="María García" class="testimonial-card__avatar" loading="lazy" width="64" height="64">
+              <div class="star-rating" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p class="testimonial-card__quote">Necesitaba una web para mi restaurante y no quería complicaciones. Webs VC me lo puso todo facilísimo. En una semana tenía mi web funcionando y los clientes empezaron a llegar por Google.</p>
+              <p class="testimonial-card__author">María García</p>
+              <p class="testimonial-card__business">La Cocina de Ana · Restauración</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel__slide">
+            <div class="testimonial-card">
+              <img src="https://i.pravatar.cc/128?img=11" alt="Carlos Ruiz" class="testimonial-card__avatar" loading="lazy" width="64" height="64">
+              <div class="star-rating" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p class="testimonial-card__quote">Mi taller no tenía presencia en internet. Ahora recibo llamadas de clientes nuevos cada semana gracias a la web. La relación calidad-precio es inmejorable.</p>
+              <p class="testimonial-card__author">Carlos Ruiz</p>
+              <p class="testimonial-card__business">Taller Motor Pro · Automoción</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel__slide">
+            <div class="testimonial-card">
+              <img src="https://i.pravatar.cc/128?img=5" alt="Laura Martínez" class="testimonial-card__avatar" loading="lazy" width="64" height="64">
+              <div class="star-rating" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p class="testimonial-card__quote">Soy muy exigente con el diseño y quedé encantada. La web de mi salón es moderna, elegante y funcional. Mis clientas la adoran. ¡Gracias equipo!</p>
+              <p class="testimonial-card__author">Laura Martínez</p>
+              <p class="testimonial-card__business">Estilo Studio · Belleza</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="carousel__slide">
+            <div class="testimonial-card">
+              <img src="https://i.pravatar.cc/128?img=68" alt="Pedro Sánchez" class="testimonial-card__avatar" loading="lazy" width="64" height="64">
+              <div class="star-rating" aria-label="4 estrellas">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p class="testimonial-card__quote">Contraté el plan profesional para mi clínica dental y no puedo estar más contento. Todo el proceso fue muy fluido, me explicaron cada paso y la web quedó espectacular.</p>
+              <p class="testimonial-card__author">Pedro Sánchez</p>
+              <p class="testimonial-card__business">Clínica Dental Sonríe · Salud</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="carousel__controls">
+          <button class="carousel__btn" id="carousel-prev" aria-label="Anterior testimonio">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="carousel__dots" id="carousel-dots">
+            <button class="carousel__dot is-active" aria-label="Ir a testimonio 1"></button>
+            <button class="carousel__dot" aria-label="Ir a testimonio 2"></button>
+            <button class="carousel__dot" aria-label="Ir a testimonio 3"></button>
+            <button class="carousel__dot" aria-label="Ir a testimonio 4"></button>
+          </div>
+          <button class="carousel__btn" id="carousel-next" aria-label="Siguiente testimonio">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-07 — CONTACTO
+       ============================================================ -->
+  <section class="contact section-padding" id="contacto">
+    <div class="container">
+      <div class="section-header fade-in-element">
+        <span class="section-header__overline">Empieza hoy</span>
+        <h2 class="section-header__title">Cuéntanos sobre tu negocio</h2>
+        <p class="section-header__subtitle">
+          Rellena el formulario y te contactaremos en menos de 24 horas con una propuesta personalizada.
+        </p>
+      </div>
+
+      <div class="contact__grid">
+        <!-- Form -->
+        <div class="contact__form-wrapper fade-in-element" id="contact-form-wrapper">
+          <h3 class="contact__form-title">Solicita tu presupuesto gratis</h3>
+
+          <!-- Error message -->
+          <div class="contact__form-error-message" id="contact-error-message">
+            Ha ocurrido un error al enviar el formulario. Por favor, inténtalo de nuevo o contáctanos directamente por WhatsApp.
+          </div>
+
+          <form id="contact-form" novalidate>
+            <!-- Honeypot -->
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="website-url">Website</label>
+              <input type="text" id="website-url" name="website" tabindex="-1" autocomplete="off" data-honeypot>
+            </div>
+
+            <div class="contact__form-row">
+              <div class="form-group">
+                <label class="form-label" for="form-nombre">Nombre completo *</label>
+                <input class="form-input" type="text" id="form-nombre" name="nombre" required placeholder="Tu nombre" data-validate autocomplete="name">
+                <span class="form-error" role="alert">Por favor, introduce tu nombre completo.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-telefono">Teléfono *</label>
+                <input class="form-input" type="tel" id="form-telefono" name="telefono" required placeholder="600 000 000" data-validate autocomplete="tel">
+                <span class="form-error" role="alert">Introduce un número de teléfono válido.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-email">Correo electrónico *</label>
+              <input class="form-input" type="email" id="form-email" name="email" required placeholder="tu@email.com" data-validate autocomplete="email">
+              <span class="form-error" role="alert">Introduce un correo electrónico válido.</span>
+            </div>
+
+            <div class="contact__form-row">
+              <div class="form-group">
+                <label class="form-label" for="form-negocio">Tipo de negocio *</label>
+                <select class="form-select" id="form-negocio" name="negocio" required data-validate>
+                  <option value="" disabled selected>Selecciona tu sector</option>
+                  <option value="Restauración">Restauración</option>
+                  <option value="Salud">Salud / Clínica</option>
+                  <option value="Belleza">Belleza / Peluquería</option>
+                  <option value="Comercio">Comercio / Tienda</option>
+                  <option value="Automoción">Automoción / Taller</option>
+                  <option value="Servicios">Servicios profesionales</option>
+                  <option value="Bienestar">Bienestar / Deporte</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <span class="form-error" role="alert">Selecciona el tipo de negocio.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-plan">Plan de interés *</label>
+                <select class="form-select" id="form-plan" name="plan" required data-validate>
+                  <option value="" disabled selected>Selecciona un plan</option>
+                  <option value="Básico">Básico — 199€</option>
+                  <option value="Profesional">Profesional — 399€</option>
+                  <option value="No estoy seguro">No estoy seguro</option>
+                </select>
+                <span class="form-error" role="alert">Selecciona el plan que te interesa.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-mensaje">Mensaje (opcional)</label>
+              <textarea class="form-textarea" id="form-mensaje" name="mensaje" placeholder="Cuéntanos sobre tu negocio y qué necesitas..." rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg pricing-card__cta" style="position:relative;">
+              <span class="btn__text">Enviar solicitud</span>
+            </button>
+          </form>
+
+          <!-- Success message (hidden by default) -->
+          <div class="contact__form-success" id="contact-success">
+            <div class="contact__form-success__icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 class="contact__form-success__title">¡Gracias por contactarnos!</h3>
+            <p class="contact__form-success__text">Te contactaremos en menos de 24 horas con una propuesta personalizada para tu negocio.</p>
+          </div>
+        </div>
+
+        <!-- Contact info sidebar -->
+        <div class="contact__info fade-in-element delay-2">
+          <h3 class="contact__info-title">¿Prefieres hablar directamente?</h3>
+          <p class="contact__info-text">
+            Estamos aquí para ayudarte. Puedes contactarnos por cualquiera de estos medios:
+          </p>
+
+          <div class="contact__info-items">
+            <div class="contact__info-item">
+              <div class="contact__info-item__icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <p class="contact__info-item__label">Correo electrónico</p>
+                <p class="contact__info-item__value">carlosvaroavello91@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="contact__info-item">
+              <div class="contact__info-item__icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="contact__info-item__label">Teléfono</p>
+                <p class="contact__info-item__value">+34 684 614 988</p>
+              </div>
+            </div>
+
+            <div class="contact__info-item">
+              <div class="contact__info-item__icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="contact__info-item__label">Horario de atención</p>
+                <p class="contact__info-item__value">24/7 — Siempre disponibles</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- WhatsApp direct link -->
+          <a href="https://wa.me/34684614988?text=Hola%2C%20me%20interesa%20una%20p%C3%A1gina%20web%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F" class="contact__whatsapp" target="_blank" rel="noopener noreferrer">
+            <!-- WhatsApp icon -->
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Contactar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEC-08 — FOOTER
+       ============================================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand column -->
+        <div>
+          <a href="#hero" class="footer__logo" data-nav-link>Webs<span>VC</span></a>
+          <p class="footer__brand-description">
+            Creamos páginas web profesionales para pequeños negocios. Modernas, rápidas y efectivas.
+          </p>
+          <div class="footer__socials">
+            <!-- Instagram -->
+            <a href="#" class="footer__social-link" aria-label="Instagram" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="footer__social-link" aria-label="LinkedIn" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="4" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="#" class="footer__social-link" aria-label="Facebook" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation links -->
+        <div>
+          <h4 class="footer__heading">Navegación</h4>
+          <a href="#servicios" class="footer__link" data-nav-link>Servicios</a>
+          <a href="#portafolio" class="footer__link" data-nav-link>Portafolio</a>
+          <a href="#precios" class="footer__link" data-nav-link>Precios</a>
+          <a href="#testimonios" class="footer__link" data-nav-link>Testimonios</a>
+          <a href="#contacto" class="footer__link" data-nav-link>Contacto</a>
+        </div>
+
+        <!-- Services links -->
+        <div>
+          <h4 class="footer__heading">Servicios</h4>
+          <a href="#servicios" class="footer__link" data-nav-link>Diseño Web</a>
+          <a href="#servicios" class="footer__link" data-nav-link>Optimización Móvil</a>
+          <a href="#servicios" class="footer__link" data-nav-link>SEO Básico</a>
+          <a href="#servicios" class="footer__link" data-nav-link>Dominio y Hosting</a>
+        </div>
+
+        <!-- Contact info -->
+        <div>
+          <h4 class="footer__heading">Contacto</h4>
+          <a href="mailto:carlosvaroavello91@gmail.com" class="footer__link">carlosvaroavello91@gmail.com</a>
+          <a href="tel:+34684614988" class="footer__link">+34 684 614 988</a>
+          <p class="footer__link" style="cursor:default;">24/7 — Siempre disponibles</p>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2025 Webs VC. Todos los derechos reservados.</p>
+        <div class="footer__legal-links">
+          <a href="#" class="footer__legal-link">Aviso Legal</a>
+          <a href="#" class="footer__legal-link">Política de Privacidad</a>
+          <a href="#" class="footer__legal-link">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/dark-mode.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/form.js"></script>
+</body>
+</html>
