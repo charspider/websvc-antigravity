@@ -136,6 +136,12 @@
     max-width: 200px;
   }
 
+  /* Logo 3D: reducir proporcionalmente en móvil */
+  .hero__logo--3d {
+    width: 200px;
+    height: 150px;
+  }
+
   /* Services */
   .services__grid {
     grid-template-columns: 1fr;

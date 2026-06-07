@@ -27,15 +27,18 @@
     # ── Content Security Policy ────────────────────────────────────────────────
     # default-src 'self'          → Solo recursos del propio dominio por defecto
     # script-src 'self'           → Scripts solo del propio dominio (sin inline)
+    #   'unsafe-inline'           → Necesario para <script type="importmap"> (Chrome/Firefox)
+    #                               Los importmaps no son ejecutables como código arbitrario.
+    #   https://cdn.jsdelivr.net  → Three.js ES Module + fuentes typeface.json
     # style-src 'unsafe-inline'   → Permite estilos inline + Google Fonts CSS
     # font-src gstatic.com        → Permite descargar archivos de Google Fonts
     # img-src https:              → Imágenes desde cualquier dominio HTTPS
-    # connect-src 'self'          → fetch/XHR solo al propio dominio
+    # connect-src                 → fetch/XHR al propio dominio + EmailJS + jsDelivr (fuente font JSON)
     # object-src 'none'           → Bloquea plugins (Flash, Java…)
     # frame-ancestors 'none'      → Impide que tu web sea embebida en iframes externos
     # form-action 'self'          → Formularios solo envían al propio dominio
     # upgrade-insecure-requests   → Fuerza HTTPS en recursos HTTP legados
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com; media-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://cdn.jsdelivr.net; media-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
 
     # ── Anti-Clickjacking ──────────────────────────────────────────────────────
     # Impide que la web sea embebida en un <iframe> externo (legacy + moderno).

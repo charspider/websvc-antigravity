@@ -62,6 +62,21 @@
     crossorigin="anonymous"
     defer>
   </script>
+
+  <!-- ============================================================
+       IMPORTMAP — Three.js ES Module (r160)
+       Permite usar `import * as THREE from 'three'` y
+       `import { FontLoader } from 'three/addons/...'` en logo3d.js.
+       NOTA: el importmap DEBE estar antes de cualquier <script type=module>.
+       ============================================================ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -129,7 +144,22 @@
   <section class="hero" id="hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="hero__content">
-      <img src="assets/images/logo-websvc.png" alt="Webs VC Logo" class="hero__logo fade-in-element" width="280">
+      <!-- ============================================================
+           LOGO 3D — Entorno Three.js (MeshPhysicalMaterial + clearcoat)
+           El <canvas> se inyecta dinámicamente por js/logo3d.js.
+           El fallback <img> se muestra si WebGL no está disponible.
+           ============================================================ -->
+      <div id="logo-3d-container" class="hero__logo hero__logo--3d fade-in-element" aria-label="Webs VC Logo 3D" role="img">
+        <!-- Fallback estático (oculto por defecto, se muestra sin WebGL) -->
+        <img
+          id="logo-3d-fallback"
+          src="assets/images/logo-websvc.png"
+          alt="Webs VC Logo"
+          class="hero__logo-fallback"
+          width="280"
+          style="display:none;"
+        >
+      </div>
 
       <p class="hero__overline fade-in-element delay-1">
         <!-- Globe icon -->
@@ -841,5 +871,12 @@
   <script src="js/carousel.js" defer></script>
   <script src="js/security.js" defer></script>
   <script src="js/form.js" defer></script>
+  <!-- ============================================================
+       LOGO 3D — ES Module (importmap definido en <head>)
+       type="module" = defer automático + scope aislado + strict mode.
+       Three.js y FontLoader se resuelven via importmap desde jsDelivr.
+       ============================================================ -->
+  <script type="module" src="js/logo3d.js"></script>
+
 </body>
 </html>
