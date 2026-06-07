@@ -1,16 +1,15 @@
 /* ============================================================
-   FORM — Validación, envío EmailJS, enlace WhatsApp
+   FORM — Validación, envío via fetch() + Netlify Function,
+          enlace directo WhatsApp
    ============================================================ */
 
 const ContactForm = (() => {
 
   /* ---- Configuration ---- */
   const CONFIG = {
-    /* Reemplazar con credenciales reales de EmailJS */
-    emailjsServiceId: 'YOUR_SERVICE_ID',
-    emailjsTemplateId: 'YOUR_TEMPLATE_ID',
-    emailjsPublicKey: 'YOUR_PUBLIC_KEY',
-    /* Número de WhatsApp (con código de país, sin +) */
+    /* Endpoint de la Netlify Function que envía el WhatsApp vía Twilio */
+    apiEndpoint: '/.netlify/functions/send-whatsapp',
+    /* Número de WhatsApp para el enlace directo de fallback (con código de país, sin +) */
     whatsappNumber: '34684614988',
   };
 
@@ -101,9 +100,32 @@ const ContactForm = (() => {
 
   /* ---- WhatsApp link generator ---- */
   function generateWhatsAppLink(data) {
-    const message = `Hola, soy ${data.nombre} y tengo un negocio de ${data.negocio}.\n\nMe interesa el plan ${data.plan} de Webs VC.\n\nMi correo es ${data.email} y mi teléfono ${data.telefono}. ¿Podemos hablar?`;
-    const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedMessage}`;
+    const name = data.nombre ? data.nombre.trim() : '';
+    const email = data.email ? data.email.trim() : '';
+    const phone = data.telefono ? data.telefono.trim() : '';
+    const business = data.negocio || '';
+    const plan = data.plan || '';
+    const userMessage = data.mensaje ? data.mensaje.trim() : '';
+
+    let text = `Hola Webs VC, me pongo en contacto desde la web:\n\n`;
+    text += `👤 Nombre: ${name}\n`;
+    text += `📧 Email: ${email}\n`;
+    
+    if (phone) {
+      text += `📞 Teléfono: ${phone}\n`;
+    }
+    if (business) {
+      text += `🏢 Negocio: ${business}\n`;
+    }
+    if (plan) {
+      text += `💼 Plan de interés: ${plan}\n`;
+    }
+    if (userMessage) {
+      text += `✉️ Mensaje: ${userMessage}\n`;
+    }
+
+    const encodedText = encodeURIComponent(text);
+    return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedText}`;
   }
 
   /* ---- Form submission ---- */
@@ -119,7 +141,9 @@ const ContactForm = (() => {
     /* Validate */
     if (!validateAllFields()) {
       const firstInvalid = form.querySelector('.is-invalid');
-      if (firstInvalid) firstInvalid.focus();
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
       return;
     }
 
@@ -127,36 +151,62 @@ const ContactForm = (() => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
+    /* Combine fields to send to Twilio serverless function */
+    let customMessage = data.mensaje ? data.mensaje.trim() : '';
+    
+    const extraDetails = [];
+    if (data.telefono) {
+      extraDetails.push(`📞 Teléfono: ${data.telefono.trim()}`);
+    }
+    if (data.negocio) {
+      extraDetails.push(`🏢 Sector: ${data.negocio}`);
+    }
+    if (data.plan) {
+      extraDetails.push(`💼 Plan: ${data.plan}`);
+    }
+
+    if (extraDetails.length > 0) {
+      customMessage = `${customMessage}\n\n${extraDetails.join('\n')}`.trim();
+    }
+
+    const payload = {
+      nombre: data.nombre ? data.nombre.trim() : '',
+      email: data.email ? data.email.trim() : '',
+      mensaje: customMessage || 'Interesado en los servicios de Webs VC.'
+    };
+
     /* Show loading state */
     setLoadingState(true);
     hideError();
 
     try {
-      /* Attempt EmailJS send (if SDK loaded) */
-      if (typeof emailjs !== 'undefined') {
-        await emailjs.send(
-          CONFIG.emailjsServiceId,
-          CONFIG.emailjsTemplateId,
-          {
-            from_name: data.nombre,
-            from_email: data.email,
-            phone: data.telefono,
-            business_type: data.negocio,
-            plan: data.plan,
-            message: data.mensaje || 'Sin mensaje adicional',
-            date: new Date().toLocaleString('es-ES'),
-          },
-          CONFIG.emailjsPublicKey
-        );
+      const response = await fetch(CONFIG.apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al enviar la solicitud al servidor.');
       }
 
-      showSuccess();
+      /* Clean the form */
+      form.reset();
 
-      /* Auto-open WhatsApp in new tab after brief delay */
-      setTimeout(() => {
-        const waLink = generateWhatsAppLink(data);
-        window.open(waLink, '_blank');
-      }, 1500);
+      /* Reset visual validation classes */
+      const inputs = form.querySelectorAll('.form-input, .form-select, .form-textarea');
+      inputs.forEach(input => {
+        input.classList.remove('is-valid', 'is-invalid');
+        const group = input.closest('.form-group');
+        if (group) {
+          group.classList.remove('has-error');
+        }
+      });
+
+      /* Show success message to the user */
+      showSuccess();
 
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
@@ -171,6 +221,11 @@ const ContactForm = (() => {
     if (!submitBtn) return;
     submitBtn.classList.toggle('btn--loading', isLoading);
     submitBtn.disabled = isLoading;
+
+    const btnText = submitBtn.querySelector('.btn__text');
+    if (btnText) {
+      btnText.textContent = isLoading ? 'Enviando...' : 'Enviar solicitud';
+    }
   }
 
   function showSuccess() {
@@ -178,6 +233,7 @@ const ContactForm = (() => {
     if (successMessage) successMessage.classList.add('is-visible');
   }
 
+  // Define showError and hideError functions properly
   function showError() {
     if (errorMessage) errorMessage.classList.add('is-visible');
   }
