@@ -97,11 +97,15 @@ const ContactForm = (() => {
   }
 
   /* ---- Honeypot check ---- */
-  // Usa el campo trampa estándar del security-kit: id="hp-url", class="hp-shield".
-  // Si el campo viene relleno → es un bot (los humanos nunca lo ven).
-  function isSpam() {
+  // Delega en SecurityUtils.validateHoneypot() del security-kit (SoC).
+  // Fallback local si security.js no cargó correctamente.
+  function isHuman() {
+    if (window.SecurityUtils && typeof window.SecurityUtils.validateHoneypot === 'function') {
+      return window.SecurityUtils.validateHoneypot('hp-url');
+    }
+    // Fallback: verificación directa en caso de fallo de carga del módulo
     const honeypot = document.getElementById('hp-url');
-    return honeypot && honeypot.value.trim().length > 0;
+    return !honeypot || honeypot.value.trim().length === 0;
   }
 
   /* ---- WhatsApp link generator ---- */
@@ -138,8 +142,9 @@ const ContactForm = (() => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    /* Anti-spam */
-    if (isSpam()) {
+    /* Anti-spam — Honeypot check (Regla 3 del security-kit) */
+    if (!isHuman()) {
+      // Fallo silencioso: no revelar al bot que fue detectado
       showSuccess();
       return;
     }
@@ -157,13 +162,16 @@ const ContactForm = (() => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    /* Sanitize all string fields before sending (Anti-XSS)
+    /* Sanitize all string fields before sending (Anti-XSS — Regla 2 del security-kit)
        SecurityUtils se carga globalmente desde js/security.js */
     const sanitize = window.SecurityUtils
       ? window.SecurityUtils.sanitizeObject
       : (obj) => obj; // Fallback de seguridad si el script no cargó
 
     const sanitizedData = sanitize(data);
+
+    /* Eliminar el campo honeypot del payload — nunca debe llegar a la Netlify Function */
+    delete sanitizedData.url;
 
     /* Combine fields to send to Twilio serverless function */
     let customMessage = sanitizedData.mensaje ? sanitizedData.mensaje.trim() : '';
