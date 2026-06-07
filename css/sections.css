@@ -1124,21 +1124,26 @@
 .btn--loading {
   pointer-events: none;
   opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn--loading .btn__text {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .btn--loading::after {
   content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: #FFFFFF;
   border-radius: var(--radius-round);
   animation: spin 0.6s linear infinite;
+  margin-left: var(--space-xs);
 }
 
 @keyframes spin {

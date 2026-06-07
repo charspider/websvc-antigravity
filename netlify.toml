@@ -1,8 +1,16 @@
-# Netlify Configuration File
-# Configuración para el despliegue del sitio estático y funciones serverless
+# ==============================================================================
+# netlify.toml — Kit Base de Seguridad Universal (JAMstack)
+# Basado en: security-kit-completo.md — OWASP Top 10
+# ==============================================================================
+# Instrucciones:
+#   1. Este archivo está en la RAÍZ del proyecto (mismo nivel que index.html).
+#   2. 'publish = "."' publica la raíz como directorio de salida.
+#   3. El dominio de producción es websvc.es → ajusta connect-src si consumes
+#      APIs externas adicionales (ej: https://api.tuservicio.com).
+#   4. Google Fonts está incluido en style-src y font-src.
+# ==============================================================================
 
 [build]
-  # Publica la raíz del proyecto para alojar los archivos estáticos
   publish = "."
 
 [functions]
@@ -10,3 +18,43 @@
   directory = "netlify/functions"
   # Utilizar esbuild para compilar dependencias rápido y de forma moderna
   node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+
+    # ── Content Security Policy ────────────────────────────────────────────────
+    # default-src 'self'          → Solo recursos del propio dominio por defecto
+    # script-src 'self'           → Scripts solo del propio dominio (sin inline)
+    # style-src 'unsafe-inline'   → Permite estilos inline + Google Fonts CSS
+    # font-src gstatic.com        → Permite descargar archivos de Google Fonts
+    # img-src https:              → Imágenes desde cualquier dominio HTTPS
+    # connect-src 'self'          → fetch/XHR solo al propio dominio
+    # object-src 'none'           → Bloquea plugins (Flash, Java…)
+    # frame-ancestors 'none'      → Impide que tu web sea embebida en iframes externos
+    # form-action 'self'          → Formularios solo envían al propio dominio
+    # upgrade-insecure-requests   → Fuerza HTTPS en recursos HTTP legados
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com; media-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+
+    # ── Anti-Clickjacking ──────────────────────────────────────────────────────
+    # Impide que la web sea embebida en un <iframe> externo (legacy + moderno).
+    X-Frame-Options = "DENY"
+
+    # ── Anti-MIME Sniffing ─────────────────────────────────────────────────────
+    # Evita que el navegador ejecute un script camuflado como imagen u otro tipo.
+    X-Content-Type-Options = "nosniff"
+
+    # ── Política de Referrer ───────────────────────────────────────────────────
+    # Solo envía el origen (sin ruta ni query) en peticiones a otros dominios.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # ── HSTS — Fuerza HTTPS durante 1 año ─────────────────────────────────────
+    # ⚠ Activar 'preload' solo cuando el dominio definitivo esté 100% en HTTPS.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # ── Permissions Policy — Desactiva APIs sensibles del navegador ────────────
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+    # ── XSS Protection (navegadores legacy) ───────────────────────────────────
+    X-XSS-Protection = "1; mode=block"

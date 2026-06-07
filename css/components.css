@@ -263,15 +263,11 @@
   display: block;
 }
 
-/* Honeypot — invisible to humans */
-.form-honeypot {
-  position: absolute;
-  left: -9999px;
-  opacity: 0;
-  height: 0;
-  width: 0;
-  overflow: hidden;
-}
+/* Honeypot anti-spam — MIGRADO a base.css como .hp-shield
+   Ver: security-kit-completo.md — Sección 3b
+   La clase .hp-shield aplica position:absolute con coordenadas negativas,
+   opacity:0 y pointer-events:none para ser invisible a humanos
+   pero detectable por bots (NO usa display:none ni visibility:hidden). */
 
 /* ---- Divider ---- */
 .divider {

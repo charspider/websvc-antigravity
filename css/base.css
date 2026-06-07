@@ -163,6 +163,23 @@ p {
 .fade-in-element.delay-5 { transition-delay: 500ms; }
 .fade-in-element.delay-6 { transition-delay: 600ms; }
 
+/* ── Honeypot anti-spam — NO modificar ───────────────────────────────────────
+   Visualmente oculto para humanos, "visible" para bots.
+   NO cambiar a display:none ni visibility:hidden:
+   los bots avanzados detectan esas propiedades y omiten el campo.
+   Con position: absolute fuera del viewport + opacity: 0,
+   el campo existe para el bot pero es invisible para el usuario. */
+.hp-shield {
+  position:       absolute;
+  left:           -9999px;
+  top:            -9999px;
+  opacity:        0;
+  height:         0;
+  width:          0;
+  overflow:       hidden;
+  pointer-events: none;
+}
+
 /* ---- Selection color ---- */
 ::selection {
   background-color: var(--color-primary);

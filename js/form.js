@@ -1,6 +1,10 @@
 /* ============================================================
    FORM — Validación, envío via fetch() + Netlify Function,
           enlace directo WhatsApp
+
+   Seguridad: Este módulo usa window.SecurityUtils (inyectado por
+   js/security.js) para sanitizar todos los datos del formulario
+   antes de enviarlos. Ver security-kit-completo.md.
    ============================================================ */
 
 const ContactForm = (() => {
@@ -93,9 +97,11 @@ const ContactForm = (() => {
   }
 
   /* ---- Honeypot check ---- */
+  // Usa el campo trampa estándar del security-kit: id="hp-url", class="hp-shield".
+  // Si el campo viene relleno → es un bot (los humanos nunca lo ven).
   function isSpam() {
-    const honeypot = form.querySelector('[data-honeypot]');
-    return honeypot && honeypot.value.length > 0;
+    const honeypot = document.getElementById('hp-url');
+    return honeypot && honeypot.value.trim().length > 0;
   }
 
   /* ---- WhatsApp link generator ---- */
@@ -151,18 +157,26 @@ const ContactForm = (() => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
+    /* Sanitize all string fields before sending (Anti-XSS)
+       SecurityUtils se carga globalmente desde js/security.js */
+    const sanitize = window.SecurityUtils
+      ? window.SecurityUtils.sanitizeObject
+      : (obj) => obj; // Fallback de seguridad si el script no cargó
+
+    const sanitizedData = sanitize(data);
+
     /* Combine fields to send to Twilio serverless function */
-    let customMessage = data.mensaje ? data.mensaje.trim() : '';
-    
+    let customMessage = sanitizedData.mensaje ? sanitizedData.mensaje.trim() : '';
+
     const extraDetails = [];
-    if (data.telefono) {
-      extraDetails.push(`📞 Teléfono: ${data.telefono.trim()}`);
+    if (sanitizedData.telefono) {
+      extraDetails.push(`📞 Teléfono: ${sanitizedData.telefono.trim()}`);
     }
-    if (data.negocio) {
-      extraDetails.push(`🏢 Sector: ${data.negocio}`);
+    if (sanitizedData.negocio) {
+      extraDetails.push(`🏢 Sector: ${sanitizedData.negocio}`);
     }
-    if (data.plan) {
-      extraDetails.push(`💼 Plan: ${data.plan}`);
+    if (sanitizedData.plan) {
+      extraDetails.push(`💼 Plan: ${sanitizedData.plan}`);
     }
 
     if (extraDetails.length > 0) {
@@ -170,8 +184,8 @@ const ContactForm = (() => {
     }
 
     const payload = {
-      nombre: data.nombre ? data.nombre.trim() : '',
-      email: data.email ? data.email.trim() : '',
+      nombre: sanitizedData.nombre ? sanitizedData.nombre.trim() : '',
+      email:  sanitizedData.email  ? sanitizedData.email.trim()  : '',
       mensaje: customMessage || 'Interesado en los servicios de Webs VC.'
     };
 
