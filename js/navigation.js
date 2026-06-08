@@ -12,11 +12,21 @@ const Navigation = (() => {
   /* ---- State ---- */
   const SCROLL_THRESHOLD = 50;
 
-  /* ---- Navbar scroll behaviour ---- */
-  function handleScroll() {
+  /* ---- Navbar scroll behaviour (rAF throttled) ---- */
+  let scrollTicking = false;
+
+  function updateNavbarState() {
     if (!navbar) return;
     const isScrolled = window.scrollY > SCROLL_THRESHOLD;
     navbar.classList.toggle('is-scrolled', isScrolled);
+    scrollTicking = false;
+  }
+
+  function handleScroll() {
+    if (!scrollTicking) {
+      requestAnimationFrame(updateNavbarState);
+      scrollTicking = true;
+    }
   }
 
   /* ---- Hamburger toggle ---- */
@@ -55,7 +65,7 @@ const Navigation = (() => {
   /* ---- Init ---- */
   function init() {
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    updateNavbarState(); /* Set initial state synchronously */
 
     if (hamburger) {
       hamburger.addEventListener('click', toggleMobileMenu);

@@ -42,10 +42,16 @@
   }
   </script>
 
-  <!-- Google Fonts — Inter -->
+  <!-- Google Fonts — Inter con font-display:swap para evitar FOIT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="dns-prefetch" href="https://i.pravatar.cc">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Preload LCP image (hero logo) -->
+  <link rel="preload" href="assets/images/logo-websvc.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/logo-websvc.png" as="image">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
@@ -131,13 +137,19 @@
   <section class="hero" id="hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="hero__content">
-      <img
-        src="assets/images/logo-websvc.png"
-        alt="Webs VC Logo"
-        class="hero__logo fade-in-element"
-        width="280"
-        height="auto"
-      >
+      <picture>
+        <source srcset="assets/images/logo-websvc.webp" type="image/webp">
+        <img
+          src="assets/images/logo-websvc.png"
+          alt="Webs VC Logo"
+          class="hero__logo"
+          width="280"
+          height="140"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
+        >
+      </picture>
 
       <p class="hero__overline fade-in-element delay-1">
         <!-- Globe icon -->
@@ -360,7 +372,10 @@
 
       <div class="portfolio__grid">
         <div class="portfolio-item fade-in-element delay-1">
-          <img src="assets/images/portfolio-restaurante.png" alt="Web para restaurante La Cocina de Ana" class="portfolio-item__image" loading="lazy">
+          <picture>
+            <source srcset="assets/images/portfolio-restaurante.webp" type="image/webp">
+            <img src="assets/images/portfolio-restaurante.png" alt="Web para restaurante La Cocina de Ana" class="portfolio-item__image" loading="lazy" width="800" height="600">
+          </picture>
           <div class="portfolio-item__overlay">
             <span class="portfolio-item__name">La Cocina de Ana</span>
             <span class="portfolio-item__sector">Restauración</span>
@@ -368,7 +383,10 @@
         </div>
 
         <div class="portfolio-item fade-in-element delay-2">
-          <img src="assets/images/portfolio-clinica.png" alt="Web para Clínica Dental Sonríe" class="portfolio-item__image" loading="lazy">
+          <picture>
+            <source srcset="assets/images/portfolio-clinica.webp" type="image/webp">
+            <img src="assets/images/portfolio-clinica.png" alt="Web para Clínica Dental Sonríe" class="portfolio-item__image" loading="lazy" width="800" height="600">
+          </picture>
           <div class="portfolio-item__overlay">
             <span class="portfolio-item__name">Clínica Dental Sonríe</span>
             <span class="portfolio-item__sector">Salud</span>
@@ -376,7 +394,10 @@
         </div>
 
         <div class="portfolio-item fade-in-element delay-3">
-          <img src="assets/images/portfolio-peluqueria.png" alt="Web para peluquería Estilo Studio" class="portfolio-item__image" loading="lazy">
+          <picture>
+            <source srcset="assets/images/portfolio-peluqueria.webp" type="image/webp">
+            <img src="assets/images/portfolio-peluqueria.png" alt="Web para peluquería Estilo Studio" class="portfolio-item__image" loading="lazy" width="800" height="600">
+          </picture>
           <div class="portfolio-item__overlay">
             <span class="portfolio-item__name">Estilo Studio</span>
             <span class="portfolio-item__sector">Belleza</span>
@@ -384,7 +405,10 @@
         </div>
 
         <div class="portfolio-item fade-in-element delay-4">
-          <img src="assets/images/portfolio-taller.png" alt="Web para Taller Motor Pro" class="portfolio-item__image" loading="lazy">
+          <picture>
+            <source srcset="assets/images/portfolio-taller.webp" type="image/webp">
+            <img src="assets/images/portfolio-taller.png" alt="Web para Taller Motor Pro" class="portfolio-item__image" loading="lazy" width="800" height="600">
+          </picture>
           <div class="portfolio-item__overlay">
             <span class="portfolio-item__name">Taller Motor Pro</span>
             <span class="portfolio-item__sector">Automoción</span>
@@ -392,7 +416,10 @@
         </div>
 
         <div class="portfolio-item fade-in-element delay-5">
-          <img src="assets/images/portfolio-tienda.png" alt="Web para boutique Moda Local" class="portfolio-item__image" loading="lazy">
+          <picture>
+            <source srcset="assets/images/portfolio-tienda.webp" type="image/webp">
+            <img src="assets/images/portfolio-tienda.png" alt="Web para boutique Moda Local" class="portfolio-item__image" loading="lazy" width="800" height="600">
+          </picture>
           <div class="portfolio-item__overlay">
             <span class="portfolio-item__name">Moda Local</span>
             <span class="portfolio-item__sector">Comercio</span>
@@ -400,7 +427,10 @@
         </div>
 
         <div class="portfolio-item fade-in-element delay-6">
-          <img src="assets/images/portfolio-yoga.png" alt="Web para estudio de yoga Espacio Zen" class="portfolio-item__image" loading="lazy">
+          <picture>
+            <source srcset="assets/images/portfolio-yoga.webp" type="image/webp">
+            <img src="assets/images/portfolio-yoga.png" alt="Web para estudio de yoga Espacio Zen" class="portfolio-item__image" loading="lazy" width="800" height="600">
+          </picture>
           <div class="portfolio-item__overlay">
             <span class="portfolio-item__name">Espacio Zen</span>
             <span class="portfolio-item__sector">Bienestar</span>
@@ -849,6 +879,7 @@
   <script src="js/carousel.js" defer></script>
   <script src="js/security.js" defer></script>
   <script src="js/form.js" defer></script>
+  <!-- logo3d.js eliminado: Three.js CDN costoso, no necesario con logo PNG optimizado -->
 
 
 </body>

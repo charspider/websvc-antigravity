@@ -26,19 +26,16 @@
 
     # ── Content Security Policy ────────────────────────────────────────────────
     # default-src 'self'          → Solo recursos del propio dominio por defecto
-    # script-src 'self'           → Scripts solo del propio dominio (sin inline)
-    #   'unsafe-inline'           → Necesario para <script type="importmap"> (Chrome/Firefox)
-    #                               Los importmaps no son ejecutables como código arbitrario.
-    #   https://cdn.jsdelivr.net  → Three.js ES Module + fuentes typeface.json
+    # script-src 'self'           → Scripts solo del propio dominio
     # style-src 'unsafe-inline'   → Permite estilos inline + Google Fonts CSS
     # font-src gstatic.com        → Permite descargar archivos de Google Fonts
-    # img-src https:              → Imágenes desde cualquier dominio HTTPS
-    # connect-src                 → fetch/XHR al propio dominio + EmailJS + jsDelivr (fuente font JSON)
+    # img-src https:              → Imágenes desde cualquier dominio HTTPS (pravatar, etc.)
+    # connect-src                 → fetch/XHR al propio dominio + EmailJS
     # object-src 'none'           → Bloquea plugins (Flash, Java…)
     # frame-ancestors 'none'      → Impide que tu web sea embebida en iframes externos
     # form-action 'self'          → Formularios solo envían al propio dominio
     # upgrade-insecure-requests   → Fuerza HTTPS en recursos HTTP legados
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://cdn.jsdelivr.net; media-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com; media-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
 
     # ── Anti-Clickjacking ──────────────────────────────────────────────────────
     # Impide que la web sea embebida en un <iframe> externo (legacy + moderno).
@@ -61,3 +58,28 @@
 
     # ── XSS Protection (navegadores legacy) ───────────────────────────────────
     X-XSS-Protection = "1; mode=block"
+
+# ── Cache Control — Assets estáticos ──────────────────────────────────────────
+# Los assets con hash/versionado pueden cachearse 1 año (inmutable).
+# Imágenes WebP y PNG: 1 año de caché (cambian raramente)
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# CSS y JS: 1 año de caché
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML: siempre fresco (no cachear)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
